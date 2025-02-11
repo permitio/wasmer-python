@@ -28,18 +28,18 @@ jobs:
           #   rust-toolchain: 'stable'
           #   llvm_url: 'https://github.com/wasmerio/llvm-custom-builds/releases/download/11.x/linux-aarch64.tar.gz'
 
-          - id: 'darwin-amd64'
-            os: 'macos-latest'
-            target-name: 'x86_64-apple-darwin'
-            rust-toolchain: 'stable'
-            llvm_url: 'https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/clang+llvm-13.0.0-x86_64-apple-darwin.tar.xz'
-
-          - id: 'windows-amd64'
-            os: 'windows-latest'
-            target-name: 'x86_64-pc-windows-msvc'
-            rust-toolchain: 'stable'
-            # llvm_url: 'https://github.com/wasmerio/llvm-custom-builds/releases/download/11.x/windows-amd64.tar.gz'
-            llvm_choco_version: 13.0.0
+#          - id: 'darwin-amd64'
+#            os: 'macos-latest'
+#            target-name: 'x86_64-apple-darwin'
+#            rust-toolchain: 'stable'
+#            llvm_url: 'https://github.com/llvm/llvm-project/releases/download/llvmorg-13.0.0/clang+llvm-13.0.0-x86_64-apple-darwin.tar.xz'
+#
+#          - id: 'windows-amd64'
+#            os: 'windows-latest'
+#            target-name: 'x86_64-pc-windows-msvc'
+#            rust-toolchain: 'stable'
+#            # llvm_url: 'https://github.com/wasmerio/llvm-custom-builds/releases/download/11.x/windows-amd64.tar.gz'
+#            llvm_choco_version: 13.0.0
 
       fail-fast: true
 
