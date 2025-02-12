@@ -53,7 +53,8 @@ jobs:
         if: matrix.target.id == 'linux-amd64'
         run: |
           sudo apt-get update -y
-          sudo apt-get install libtinfo5
+          wget http://security.ubuntu.com/ubuntu/pool/universe/n/ncurses/libtinfo5_6.3-2ubuntu0.1_amd64.deb
+          sudo apt install ./libtinfo5_6.3-2ubuntu0.1_amd64.deb
           echo "LD_LIBRARY_PATH=/lib/x86_64-linux-gnu" >> $GITHUB_ENV
 
       - name: Set up Rust
@@ -64,7 +65,7 @@ jobs:
           override: true
           target: ${{ matrix.target.target-name }}
 
-      - uses: Swatinem/rust-cache@v1
+      - uses: Swatinem/rust-cache@v2
 
       - name: Set current Python version
         shell: bash
