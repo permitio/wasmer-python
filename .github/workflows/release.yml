@@ -201,11 +201,9 @@ jobs:
         run: |
           ls -lhaGiR artifacts/*
 
-          for wheel in $(ls artifacts/wheels-*/*.whl | tr '/' '\t' | sort -k 3 | uniq -f 2 | tr '\t' '/')
-          do
-              echo -e "${wheel}\n"
-          done | tee wheels
-          echo ::set-output name=wheels::wheels
+          find artifacts/wheels-* -type f -name "*.whl" > wheels
+          cat wheels
+          echo "wheels=$(cat wheels)" >> "$GITHUB_ENV"
 
       - name: Set current Python version
         shell: bash
@@ -256,7 +254,14 @@ jobs:
 #          if test -d .env/bin/; then source .env/bin/activate; else source .env/Scripts/activate; fi
 #          just publish pypi $(cat wheels | cut -f 1 | grep --invert-match aarch64)
 
+      - name: Debug Wheel Paths
+        shell: bash
+        run: |
+          cat wheels
+          echo "Final wheels variable:"
+          echo "${{ env.wheels }}"
+
       - name: Upload the wheels as Github release assets
         uses: softprops/action-gh-release@v2
         with:
-          files: ${{ steps.inspect_artifacts.outputs.wheels }}
+          files: ${{ env.wheels }}
